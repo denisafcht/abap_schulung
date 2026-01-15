@@ -17,7 +17,7 @@ CLASS zcl_03_abap_07 IMPLEMENTATION.
 
   METHOD if_oo_adt_classrun~main.
     TRY.
-        data(d) = zcl_03_helper=>get_travels( '200' ).
+        data(d) = zcl_AA_03_helper=>get_travels( '200' ).
       CATCH zcx_abap_no_data.
     ENDTRY.
 

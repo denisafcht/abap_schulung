@@ -17,7 +17,7 @@ CLASS zcl_03_abap_06 IMPLEMENTATION.
 
   METHOD if_oo_adt_classrun~main.
     TRY.
-        data(d) = zcl_03_helper=>get_travel_with_customer( '200' ).
+        data(d) = zcl_AA_03_helper=>get_travel_with_customer( '200' ).
       CATCH zcx_abap_no_data.
         "handle exception
     ENDTRY.

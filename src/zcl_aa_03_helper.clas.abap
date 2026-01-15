@@ -1,4 +1,4 @@
-CLASS zcl_03_helper DEFINITION
+CLASS zcl_aa_03_helper DEFINITION
   PUBLIC
   FINAL
   CREATE PUBLIC .
@@ -22,7 +22,7 @@ ENDCLASS.
 
 
 
-CLASS zcl_03_helper IMPLEMENTATION.
+CLASS zcl_aa_03_helper IMPLEMENTATION.
 
 
   METHOD if_oo_adt_classrun~main.

@@ -1,4 +1,4 @@
-CLASS z03_demo_08 DEFINITION
+CLASS zcl_03_demo_08 DEFINITION
   PUBLIC
   FINAL
   CREATE PUBLIC .
@@ -12,7 +12,7 @@ ENDCLASS.
 
 
 
-CLASS z03_demo_08 IMPLEMENTATION.
+CLASS zcl_03_demo_08 IMPLEMENTATION.
   METHOD if_oo_adt_classrun~main.
     DATA carrier_id    TYPE /dmo/carrier_id    VALUE 'LH'.
     DATA connection_id TYPE /dmo/connection_id VALUE '0400'.

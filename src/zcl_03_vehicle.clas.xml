@@ -3,9 +3,9 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <VSEOCLASS>
-    <CLSNAME>ZCL_03_HELPER</CLSNAME>
+    <CLSNAME>ZCL_03_VEHICLE</CLSNAME>
     <LANGU>E</LANGU>
-    <DESCRIPT>Helper Class</DESCRIPT>
+    <DESCRIPT>Demo 9: Objektorientierung</DESCRIPT>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>

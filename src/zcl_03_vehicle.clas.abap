@@ -1,6 +1,5 @@
 CLASS zcl_03_vehicle DEFINITION
   PUBLIC
-  FINAL
   CREATE PUBLIC .
 
   PUBLIC SECTION.
@@ -13,6 +12,8 @@ CLASS zcl_03_vehicle DEFINITION
     METHODS constructor IMPORTING make  TYPE string
                                   model TYPE string.
 
+    METHODS to_string RETURNING VALUE(string) TYPE string.
+
     DATA make         TYPE string READ-ONLY.
     DATA model        TYPE string READ-ONLY.
     DATA speed_in_kmh TYPE i      READ-ONLY.
@@ -21,7 +22,6 @@ CLASS zcl_03_vehicle DEFINITION
 
   PRIVATE SECTION.
 ENDCLASS.
-
 
 
 CLASS zcl_03_vehicle IMPLEMENTATION.
@@ -47,4 +47,7 @@ CLASS zcl_03_vehicle IMPLEMENTATION.
     number_of_vehicles += 1.
   ENDMETHOD.
 
+  METHOD to_string.
+      string = |{ make } { model } ({ speed_in_kmh }km/h)|.
+  ENDMETHOD.
 ENDCLASS.

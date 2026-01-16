@@ -1,6 +1,5 @@
 CLASS zcl_03_airplane DEFINITION
   PUBLIC
-  FINAL
   CREATE PUBLIC .
 
   PUBLIC SECTION.
@@ -8,6 +7,9 @@ CLASS zcl_03_airplane DEFINITION
                                   plane_type           TYPE string
                                   empty_weight_in_tons TYPE i
                         RAISING   zcx_abap_initial_parameter.
+
+    METHODS get_total_weight_in_tons
+      RETURNING VALUE(total_weight) TYPE i.
 
     DATA id                   TYPE string READ-ONLY.
     DATA plane_type           TYPE string READ-ONLY.
@@ -39,4 +41,9 @@ CLASS zcl_03_airplane IMPLEMENTATION.
 
     number_of_airplanes += 1.
   ENDMETHOD.
+
+  METHOD get_total_weight_in_tons.
+    total_weight = empty_weight_in_tons * '1.1'.
+  ENDMETHOD.
+
 ENDCLASS.

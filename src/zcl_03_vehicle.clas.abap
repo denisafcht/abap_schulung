@@ -1,12 +1,12 @@
 CLASS zcl_03_vehicle DEFINITION
-  PUBLIC
+  PUBLIC ABSTRACT
   CREATE PUBLIC .
 
   PUBLIC SECTION.
-    METHODS acelerate IMPORTING !value TYPE i
+    METHODS acelerate FINAL IMPORTING !value TYPE i
                       RAISING   zcx_03_value_too_high.
 
-    METHODS break IMPORTING !value TYPE i
+    METHODS break FINAL IMPORTING !value TYPE i
                   RAISING   zcx_03_value_too_high.
 
     METHODS constructor IMPORTING make  TYPE string

@@ -19,6 +19,10 @@ CLASS zcl_03_main_vehicle IMPLEMENTATION.
     DATA vehicles TYPE TABLE OF REF TO zcl_03_vehicle.
     DATA truck    TYPE REF TO zcl_03_truck.
 
+    DATA rental   TYPE REF TO zcl_03_rental.
+    DATA carrier  TYPE REF TO zcl_03_carrier.
+    DATA partners TYPE TABLE OF REF TO zif_03_partner.
+
     " Instanziierungen
     vehicle = NEW zcl_03_car( make  = 'Porsche'
                               model = '911'
@@ -35,6 +39,12 @@ CLASS zcl_03_main_vehicle IMPLEMENTATION.
                               seats = 5 ).
     APPEND vehicle TO vehicles.
 
+    rental = NEW #( ).
+    carrier = NEW #( 'Lufthansa' ).
+
+    APPEND rental TO partners. " Upcast
+    APPEND carrier TO partners. " Upcast
+
     " Ausgabe
 
     LOOP AT vehicles INTO vehicle.
@@ -49,10 +59,19 @@ CLASS zcl_03_main_vehicle IMPLEMENTATION.
         truck = CAST #( vehicle ).
         truck->transform( ).
         out->write( |{ COND #( WHEN truck->is_transformed = 'X'
-                                THEN 'Der LKW hat sich in einem Autobot transformiert.'
-                                ELSE 'Der Autobot hat sich in einem LKW transformiert.' ) }| ).
+                               THEN 'Der LKW hat sich in einem Autobot transformiert.'
+                               ELSE 'Der Autobot hat sich in einem LKW transformiert.' ) }| ).
       ENDIF.
       out->write( vehicle->to_string( ) ). " (Dynamische) Polymorphie
+    ENDLOOP.
+
+    LOOP AT partners INTO DATA(partner).
+      out->write( partner->to_string( ) ). " (Dynamische) Polymorphie
+
+      IF partner IS INSTANCE OF zcl_03_carrier.
+        carrier = CAST #( partner ).     " Downcast
+        out->write( carrier->get_biggest_cargo_plane( ) ).
+      ENDIF.
     ENDLOOP.
 
     out->write( zcl_03_vehicle=>number_of_vehicles ).

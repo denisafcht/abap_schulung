@@ -7,8 +7,9 @@
 @Metadata.ignorePropagatedAnnotations: true
 
 define view entity Z03_CustomerKPIs
-with parameters
-  P_City : /dmo/city
+  with parameters
+    P_City : /dmo/city
+
   as select from Z03_TravelWithCustomer
 
 {
@@ -26,7 +27,9 @@ with parameters
   avg(Duration as abap.dec(16,2))   as AverageDuration,
   count(distinct AgencyId)          as NumberOfDifferentAgencys
 }
+
 where City = $parameters.P_City
+
 group by CustomerId,
          CustomerName,
          Street,

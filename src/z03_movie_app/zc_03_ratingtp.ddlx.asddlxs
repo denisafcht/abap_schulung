@@ -2,12 +2,16 @@
 
 @UI.headerInfo: { typeNamePlural: 'Ratings', title.value: 'Rating', description.value: 'UserName' }
 
+@UI.presentationVariant: [ { sortOrder: [ { by: 'RatingDate', direction: #DESC },
+                                          { by: 'UserName',   direction: #ASC  } ] } ]
+
 annotate entity ZC_03_RatingTP
   with
 
 {
   @UI.facet: [ { position: 10, type: #FIELDGROUP_REFERENCE, targetQualifier: 'Details', label: 'Rating Details'      },
                { position: 20, type: #FIELDGROUP_REFERENCE, targetQualifier: 'Admin',   label: 'Administrative Data' } ]
+               
   @UI.fieldGroup: [ { position: 10, qualifier: 'Admin' } ]
   RatingUUID;
 

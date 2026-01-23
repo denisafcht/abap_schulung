@@ -1,23 +1,26 @@
 @Metadata.layer: #CUSTOMER
 
 @UI.headerInfo: { typeNamePlural: 'Movies',
+                  typeName: 'Movie',
                   title.value: 'Title',
                   description.value: 'PublishingYear',
                   imageUrl: 'ImageUrl' }
+
+@UI.lineItem: [ { criticality: 'AverageRatingCriticality' } ]
+@UI.presentationVariant: [ { sortOrder: [ { by: 'AverageRating', direction: #DESC } ] } ]
 
 annotate entity ZC_03_MovieTP
   with
 
 {
-  @UI.facet: [ { position: 10, type: #FIELDGROUP_REFERENCE, targetQualifier: 'Details', label: 'Movie Details'       },
-               { position: 20, type: #FIELDGROUP_REFERENCE, targetQualifier: 'Admin',   label: 'Administrative Data' },
-               { position: 30, type: #LINEITEM_REFERENCE, targetElement: '_Ratings',   label: 'Ratings' } ]
+  @UI.facet: [ { position: 10, type: #FIELDGROUP_REFERENCE, targetQualifier: 'Details', label: 'Movie Details' },
+               { position: 20, type: #FIELDGROUP_REFERENCE, targetQualifier: 'Admin', label: 'Administrative Data' },
+               { position: 30, type: #LINEITEM_REFERENCE, targetElement: '_Ratings', label: 'Ratings' } ]
+  @UI.lineItem: [ { position: 10, type: #FOR_ACTION, label: 'Rate Movie', dataAction: 'RateMovie'} ]
   @UI.fieldGroup: [ { position: 10, qualifier: 'Details' } ]
-  // MovieUUId;
-  @UI.lineItem: [ { position: 10 } ]
   Title;
 
-  @UI.fieldGroup: [ { position: 10, qualifier: 'Details' } ]
+  @UI.fieldGroup: [ { position: 20, qualifier: 'Details' } ]
   @UI.lineItem: [ { position: 20 } ]
   @UI.selectionField: [ { position: 10 } ]
   Genre;
@@ -47,4 +50,13 @@ annotate entity ZC_03_MovieTP
 
   @UI.fieldGroup: [ { position: 40, qualifier: 'Admin' } ]
   LastChangedBy;
+  
+  @UI.fieldGroup: [ { position: 60, qualifier: 'Details', criticalityRepresentation: #WITHOUT_ICON } ]
+  @UI.lineItem: [ { position: 50, criticality: 'AverageRatingCriticality', criticalityRepresentation: #WITHOUT_ICON } ]
+  @UI.selectionField: [{ position: 40 }]
+  @UI.dataPoint: { criticality: 'AverageRatingCriticality' }
+  AverageRating;
+  
+  @UI.hidden: true
+  AverageRatingCriticality;
 }
